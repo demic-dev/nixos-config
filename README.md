@@ -5,7 +5,11 @@ Currently, there is only MacOS and it's still not complete (WIP).
 
 ## To-Do:
 
-[] - Migrate NAS configuration to Flakes (with Disko)
+- [ ] Make Mac configuration more reproducible (declare all apps on config file)
+
+- [ ] Add Nvim config
+
+- [ ] Migrate NAS configuration to Flakes (with Disko)
 
 ## References
 
