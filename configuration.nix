@@ -33,6 +33,7 @@ let
     MACBOOK = {
       USER = "micheledecillis";
       HOST = "air";
+      HOME = "/Users/micheledecillis";
     };
   };
 in 

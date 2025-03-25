@@ -1,3 +1,0 @@
-[submodule "modules/editors/nvim/ecosse3.nvim"]
-	path = modules/editors/nvim/ecosse3.nvim
-	url = https://github.com/ecosse3/nvim

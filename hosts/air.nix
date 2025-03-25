@@ -15,6 +15,7 @@ in
   environment.systemPackages = [
     pkgs.neofetch
     pkgs.ncspot
+    pkgs.fd
   ];
 
   # Brew
@@ -33,7 +34,7 @@ in
 
   users.users.${myConfig.HOSTS.MACBOOK.USER} = {
     name = myConfig.HOSTS.MACBOOK.USER;
-    home = "/Users/${myConfig.HOSTS.MACBOOK.USER}";
+    home = myConfig.HOSTS.MACBOOK.HOME;
   };
 
 
@@ -48,7 +49,7 @@ in
 
     home.sessionVariables = {
       EDITOR = "nvim";
-      XDG_CONFIG_HOME = "/Users/micheledecillis/.config";
+      XDG_CONFIG_HOME = "${myConfig.HOSTS.MACBOOK.HOME}/.config";
     };
 
     # Required for internal compatibility

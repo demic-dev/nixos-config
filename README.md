@@ -6,9 +6,8 @@ Currently, there is only MacOS and it's still not complete (WIP).
 ## To-Do:
 
 - [ ] Make Mac configuration more reproducible (declare all apps on config file)
-
-- [ ] Add Nvim config
-
+- [X] Add Nvim config
+- [ ] Create own Nvim config
 - [ ] Migrate NAS configuration to Flakes (with Disko)
 
 ## References
