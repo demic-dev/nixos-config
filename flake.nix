@@ -24,7 +24,7 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.verbose = true;
+          # home-manager.verbose = true;
         }
         ./hosts/air.nix
       ];

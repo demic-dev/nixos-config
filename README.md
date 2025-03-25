@@ -13,6 +13,6 @@ Currently, there is only MacOS and it's still not complete (WIP).
 
 ## References
 
-1. [https://github.com/carjorvaz/nixos]()
-2. [https://github.com/diogotcorreia/dotfiles]()
+1. [https://github.com/carjorvaz/nixos](https://github.com/carjorvaz/nixos)
+2. [https://github.com/diogotcorreia/dotfiles](https://github.com/diogotcorreia/dotfiles)
 

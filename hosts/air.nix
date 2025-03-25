@@ -15,7 +15,6 @@ in
   environment.systemPackages = [
     pkgs.neofetch
     pkgs.ncspot
-    pkgs.neovim
   ];
 
   # Brew
@@ -39,7 +38,13 @@ in
 
 
   home-manager.users.${myConfig.HOSTS.MACBOOK.USER} = {
-    programs.home-manager.enable = true;
+    programs = {
+      home-manager.enable = true;
+    };
+
+    imports = [
+      ../modules/editors/nvim
+    ];
 
     home.sessionVariables = {
       EDITOR = "nvim";
