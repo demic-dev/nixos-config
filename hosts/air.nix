@@ -48,6 +48,7 @@ in
 
     home.sessionVariables = {
       EDITOR = "nvim";
+      XDG_CONFIG_HOME = "/Users/micheledecillis/.config";
     };
 
     # Required for internal compatibility
