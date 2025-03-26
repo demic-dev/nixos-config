@@ -15,18 +15,30 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
-    config = import ./configuration.nix { inherit self config; };
+    systemSettings = { };
+    userSettings = {
+      writingEnvironment = "dev";
+
+      air = {
+        user = "micheledecillis";
+        host = "air";
+        home = "/Users/micheledecillis/";
+      };
+    };
   in
   {
-    darwinConfigurations.${config.HOSTS.MACBOOK.HOST} = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${userSettings.air.host} = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
+      specialArgs = {
+        inherit systemSettings;
+        inherit userSettings;
+      };
       modules = [
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          # home-manager.verbose = true;
         }
-        ./hosts/air.nix
+        ./hosts/air
       ];
     };
   };
