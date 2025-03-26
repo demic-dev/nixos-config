@@ -1,11 +1,13 @@
 # ❄ Nix Config
 
 This folder contains the configuration for all my devices, handled through Nix.
-Currently, there is only MacOS and it's still not complete (WIP).
 
-## To-Do:
+## To-Do
 
 - [ ] Make Mac configuration more reproducible (declare all apps on config file)
+    - [ ] Git
+    - [ ] Shell
+    - [ ] SSH
     - [ ] Apps
         - [x] BitWarden
         - [x] Signal
@@ -14,13 +16,13 @@ Currently, there is only MacOS and it's still not complete (WIP).
         - [x] Tailscale
         - [x] AnyType
         - [x] Anki
-        - [ ] iTerm2 # I should include OhMyZsh edits
         - [x] Discord
         - [x] Telegram
         - [x] Calibre
-        - [ ] Zen Browser
+        - [ ] Zen Browser (import configurations)
         - [x] Spotify
 - [X] Add Nvim config
+- [ ] Load different home configs based on environment
 - [ ] Create own Nvim config
 - [ ] Migrate NAS configuration to Flakes (with Disko)
 
