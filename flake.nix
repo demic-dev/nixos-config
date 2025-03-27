@@ -38,9 +38,14 @@
       };
       modules = [
         home-manager.darwinModules.home-manager {
+          home-manager.extraSpecialArgs = {
+            inherit userSettings;
+            inherit systemSettings;
+          };
+
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${userSettings.air.user} = userSettings.air.home.config;
+          home-manager.users.${userSettings.air.user} = userSettings.air.home.config; 
         }
         ./hosts/air
       ];

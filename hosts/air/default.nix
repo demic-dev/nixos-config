@@ -7,6 +7,39 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  # Source: https://macos-defaults.com/
+  system = {
+    defaults = {
+      finder = {
+        FXEnableExtensionChangeWarning = false;
+
+        # When performing a search, search the current folder by default
+        FXDefaultSearchScope = "SCcf";
+        QuitMenuItem = true;
+        CreateDesktop = false;
+        ShowPathbar = true;
+      };
+
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+
+        AppleShowAllExtensions = true;
+
+        _HIHideMenuBar = true;
+        AppleFontSmoothing = 2;
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = true;
+      };
+
+      dock = {
+        autohide = true;
+
+        orientation = "bottom";
+        show-recents = false;
+      };
+    };
+  };
+
   security.pam.services.sudo_local.touchIdAuth = true;
 
   environment.systemPackages = [
@@ -37,6 +70,7 @@
       "calibre"
       "anytype"
       "thunderbird"
+      "ghostty"
       # "zen-browser"
     ];
   };

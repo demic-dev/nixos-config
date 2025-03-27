@@ -5,8 +5,10 @@ This folder contains the configuration for all my devices, handled through Nix.
 ## To-Do
 
 - [ ] Make Mac configuration more reproducible (declare all apps on config file)
-    - [ ] Git
-    - [ ] Shell
+    - [x] Git
+    - [x] Shell
+        - [ ] Fix ghostty config file not working
+    - [x] Terminal
     - [ ] SSH
     - [ ] Apps
         - [x] BitWarden
@@ -21,7 +23,7 @@ This folder contains the configuration for all my devices, handled through Nix.
         - [x] Calibre
         - [ ] Zen Browser (import configurations)
         - [x] Spotify
-    - [ ] System configuration (dock, finder, etc. [ref1](https://kristianfreeman.com/my-starter-macos-nix-config), [ref2](https://github.com/kristianfreeman/computer/blob/main/hosts/gandalf/configuration.nix))
+    - [x] System configuration (dock, finder, etc. [ref1](https://kristianfreeman.com/my-starter-macos-nix-config), [ref2](https://github.com/kristianfreeman/computer/blob/main/hosts/gandalf/configuration.nix))
 - [X] Add Nvim config
 - [ ] Load different home configs based on environment
 - [ ] Create own Nvim config
@@ -32,4 +34,5 @@ This folder contains the configuration for all my devices, handled through Nix.
 1. [https://github.com/carjorvaz/nixos](https://github.com/carjorvaz/nixos)
 2. [https://github.com/diogotcorreia/dotfiles](https://github.com/diogotcorreia/dotfiles)
 3. [https://github.com/librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
+4. [https://github.com/kristianfreeman/computer](https://github.com/kristianfreeman/computer)
 
