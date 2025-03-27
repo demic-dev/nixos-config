@@ -22,7 +22,10 @@
       air = {
         user = "micheledecillis";
         host = "air";
-        home = "/Users/micheledecillis/";
+        home = {
+          path = "/Users/micheledecillis/";
+          config = ./hosts/air/home.nix;
+        };
       };
     };
   in
@@ -37,6 +40,7 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.users.${userSettings.air.user} = userSettings.air.home.config;
         }
         ./hosts/air
       ];

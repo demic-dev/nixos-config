@@ -11,6 +11,7 @@
 
   environment.systemPackages = [
     pkgs.fd
+    pkgs.ripgrep
   ];
 
   # Brew
@@ -40,32 +41,9 @@
     ];
   };
 
-  programs = {
-    zsh.enable = true;
-  };
-
   users.users.${userSettings.air.user} = {
     name = userSettings.air.user;
-    home = userSettings.air.home;
-  };
-
-
-  home-manager.users.${userSettings.air.user} = {
-    programs = {
-      home-manager.enable = true;
-    };
-
-    imports = [
-      ( import ../../modules/editors/nvim { inherit pkgs userSettings lib; } )
-    ];
-
-    home.sessionVariables = {
-      EDITOR = "nvim";
-      XDG_CONFIG_HOME = "${userSettings.air.home}/.config";
-    };
-
-    # Required for internal compatibility
-    home.stateVersion = "23.05";
+    home = userSettings.air.home.path;
   };
 
   # Required for backward compatibility
