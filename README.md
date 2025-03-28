@@ -7,9 +7,8 @@ This folder contains the configuration for all my devices, handled through Nix.
 - [ ] Make Mac configuration more reproducible (declare all apps on config file)
     - [x] Git
     - [x] Shell
-        - [ ] Fix ghostty config file not working
+        - [x] Fix ghostty config file not working
     - [x] Terminal
-    - [ ] SSH
     - [ ] Apps
         - [x] BitWarden
         - [x] Signal
@@ -27,6 +26,8 @@ This folder contains the configuration for all my devices, handled through Nix.
 - [X] Add Nvim config
 - [ ] Load different home configs based on environment
 - [ ] Create own Nvim config
+    - [ ] Code
+    - [ ] Text/Essays/etc
 - [ ] Migrate NAS configuration to Flakes (with Disko)
 
 ## References

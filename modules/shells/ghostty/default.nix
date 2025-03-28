@@ -1,7 +1,7 @@
 { lib, pkgs, userSettings, ... }:
 {
-  home.file.".config/ghostty" = {
-    source = ./ghostty;
+  home.file.".config/ghostty/config" = {
+    source = ./config;
     recursive = true;
   };
 }
