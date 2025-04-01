@@ -12,15 +12,20 @@ in
 {
   programs.neovim.enable = true;
 
-  home.file.".config/nvim/init.lua" = {
-    source = ./config/init.lua;
-  };
-
-  home.file.".config/nvim/ecosse3" = {
+  home.file.".config/nvim" = {
     source = ecosse3;
+    force = true;
   };
 
-  home.file.".config/nvim/miragianCycle" = {
-    source = miragianCycle;
-  };
+  # home.file.".config/nvim/init.lua" = {
+  #   source = ./config/init.lua;
+  # };
+  #
+  # home.file.".config/nvim/ecosse3" = {
+  #   source = ecosse3;
+  # };
+  #
+  # home.file.".config/nvim/miragianCycle" = {
+  #   source = miragianCycle;
+  # };
 }

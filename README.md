@@ -35,4 +35,5 @@ This folder contains the configuration for all my devices, handled through Nix.
 2. [https://github.com/diogotcorreia/dotfiles](https://github.com/diogotcorreia/dotfiles)
 3. [https://github.com/librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 4. [https://github.com/kristianfreeman/computer](https://github.com/kristianfreeman/computer)
+5. [https://github.com/Baitinq/nixos-config](https://github.com/Baitinq/nixos-config)
 
