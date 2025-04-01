@@ -24,7 +24,6 @@ This folder contains the configuration for all my devices, handled through Nix.
         - [x] Spotify
     - [x] System configuration (dock, finder, etc. [ref1](https://kristianfreeman.com/my-starter-macos-nix-config), [ref2](https://github.com/kristianfreeman/computer/blob/main/hosts/gandalf/configuration.nix))
 - [X] Add Nvim config
-- [ ] Load different home configs based on environment
 - [ ] Create own Nvim config
     - [ ] Code
     - [ ] Text/Essays/etc

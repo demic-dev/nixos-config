@@ -71,6 +71,7 @@
       "anytype"
       "thunderbird"
       "ghostty"
+      "netnewswire"
       # "zen-browser"
     ];
   };
