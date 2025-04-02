@@ -1,4 +1,4 @@
-{ self, lib, pkgs, userSettings, ... }:
+{ self, lib, pkgs, ... }:
 {
   imports = [
     ../modules/git
@@ -11,7 +11,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    XDG_CONFIG_HOME = "${userSettings.air.home.path}.config";
   };
 
   # Required for internal compatibility

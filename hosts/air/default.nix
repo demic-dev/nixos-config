@@ -1,4 +1,4 @@
-{ self, lib, pkgs, userSettings, ... }:
+{ self, lib, pkgs, env, ... }:
 {
   nix = {
     enable = false;
@@ -76,13 +76,11 @@
     ];
   };
 
-  users.users.${userSettings.air.user} = {
-    name = userSettings.air.user;
-    home = userSettings.air.home.path;
+  users.users.${env.userSettings.air.user} = {
+    name = env.userSettings.air.user;
+    home = env.userSettings.air.home.path;
   };
 
   # Required for backward compatibility
-  system = {
-    stateVersion = 4;
-  };
+  system.stateVersion = 4;
 }

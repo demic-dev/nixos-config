@@ -1,4 +1,4 @@
-{ lib, pkgs, userSettings, ... }:
+{ lib, pkgs, ... }:
 let
   ecosse3 = builtins.fetchGit {
     url = "https://github.com/ecosse3/nvim";
