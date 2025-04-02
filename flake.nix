@@ -17,10 +17,10 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, impermanence, agenix }:
   let
-    env = import ./env.nix;
+    env = import ./env.nix { inherit self; };
   in
   {
-    bach = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.bach = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       specialArgs = {
         inherit inputs self env;

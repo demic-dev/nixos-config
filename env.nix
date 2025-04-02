@@ -1,6 +1,6 @@
 { self }:
 {
-  cloudSettings = {
+  cloudSettings = { config }: {
     email = config.age.secrets.cloudEMAIL.path;
     fqdn = config.age.secrets.cloudFQDN.path;
     internal = config.age.secrets.cloudINTERNAL.path;
@@ -21,6 +21,7 @@
       };
     };
   };
+
   userSettings = {
     air = {
       publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZb619CoezLnPqNbHI+SenXRUWSLJxGycykva4ia8Sw decillismicheledeveloper@gmail.com";
@@ -31,7 +32,8 @@
         config = ./hosts/air/home.nix;
       };
     };
-    bach = {
+
+    bach = { config }: {
       publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
       rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
       id = "05835d97";
