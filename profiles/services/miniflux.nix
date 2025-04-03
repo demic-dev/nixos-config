@@ -10,7 +10,7 @@ in
 
     config = {
       CREATE_ADMIN = 1;
-      LISTEN_ADDR = "127.0.0.1:${port}";
+      LISTEN_ADDR = "127.0.0.1:${builtins.toString port}";
 
       HTTPS = 1;
     };
@@ -30,7 +30,7 @@ in
 
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${port}";
+      proxyPass = "http://localhost:${builtins.toString port}";
       proxyWebsockets = true;
 
       extraConfig = ''
@@ -44,7 +44,7 @@ in
   # Agenix
   age.secrets = {
     miniflux_admin_pass = {
-      file = ../secrets/miniflux_admin_pass.age;
+      file = ../../secrets/miniflux_admin_pass.age;
     };
   };
 }

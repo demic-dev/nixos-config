@@ -82,7 +82,7 @@ in
   # Agenix
   age.secrets = {
     nextcloud_root_pass = {
-      file = ../secrets/nextcloud_root_pass.age;
+      file = ../../secrets/nextcloud_root_pass.age;
       owner = "nextcloud";
       group = "nextcloud";
     };
@@ -131,7 +131,7 @@ in
 
     locations."/$request_uri" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${port}";
+      proxyPass = "http://localhost:${builtins.toString port}";
       proxyWebsockets = true;
 
       extraConfig = ''

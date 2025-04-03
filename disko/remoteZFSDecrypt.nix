@@ -30,7 +30,7 @@ in
             /persist/etc/secrets/initrd/ssh_host_ed25519_key
           ];
           authorizedKeys = [
-            airSSH;
+            airSSH
           ];
         };
 

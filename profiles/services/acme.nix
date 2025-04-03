@@ -1,7 +1,8 @@
 { config, pkgs, env, ... }:
 let
   fqdn = env.cloudSettings.fqdn;
-  internal = env.cloudSettings.fqdn;
+  internal = env.cloudSettings.internal;
+  email = env.cloudSettings.email;
 in
 {
   users.users.nginx.extraGroups = ["acme"];
@@ -10,7 +11,7 @@ in
     acceptTerms = true;
 
     defaults = {
-      email = env.cloudSettings.email;
+      email = email;
 
       dnsProvider = "cloudflare";
       credentialsFile = config.age.secrets.cloudflare_dns_challenge.path;
@@ -49,7 +50,7 @@ in
 
   # Agenix
   age.secrets.cloudflare_dns_challenge = {
-    file = ../secrets/cloudflare_dns_challenge.age;
+    file = ../../secrets/cloudflare_dns_challenge.age;
     owner = "acme";
     group = "acme";
     mode = "0400";

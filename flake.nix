@@ -17,7 +17,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, impermanence, agenix }:
   let
-    env = import ./env.nix { inherit self; };
+    env = import ./env.nix { inherit (nixpkgs) lib; };
   in
   {
     nixosConfigurations.bach = nixpkgs.lib.nixosSystem {
@@ -35,7 +35,7 @@
 
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${env.userSettings.bach.user} = env.userSettings.air.home.config; 
+          home-manager.users.michele = ./hosts/bach/home.nix; 
         }
         ./hosts/bach
       ];

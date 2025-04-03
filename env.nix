@@ -1,18 +1,18 @@
-{ self }:
+{ lib }:
 {
-  cloudSettings = { config }: {
-    email = config.age.secrets.cloudEMAIL.path;
-    fqdn = config.age.secrets.cloudFQDN.path;
-    internal = config.age.secrets.cloudINTERNAL.path;
+  cloudSettings = {
+    email = builtins.getEnv "EMAIL";
+    fqdn = builtins.getEnv "FQDN";
+    internal = builtins.getEnv "INTERNAL";
     services = {
       nextcloud = {
-        subdomain = config.age.secrets.cloudNEXTCLOUD.path;
+        subdomain = builtins.getEnv "NEXTCLOUD_SUB";
         port = 8443; # redisPort = port + 1;
         maxUploadSize = "8G";
         client_max_body_size = "8000M";
       };
       immich = {
-        subdomain = config.age.secrets.cloudIMMICH.path;
+        subdomain = builtins.getEnv "IMMICH_SUB";
         port = 2283; # redisPort = port + 1;
       };
       miniflux = {
@@ -33,7 +33,7 @@
       };
     };
 
-    bach = { config }: {
+    bach = {
       publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
       rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
       id = "05835d97";
@@ -45,40 +45,14 @@
       };
       network = {
         ip = {
-          v4 = config.age.secrets.bachIPV4;
-          v6 = config.age.secrets.bachIPV6;
+          v4 = builtins.getEnv "BACH_IPV4";
+          v6 = builtins.getEnv "BACH_IPV6";
         };
+        gateway = builtins.getEnv "BACH_GATEWAY";
         subnetMask = "255.255.252.0";
-        gateway = config.age.secrets.gateway;
         nameservers = [ "1.1.1.1" ];
       };
     };
   };
-
-  age.secrets = {
-    cloudFQDN = {
-      file = ./secrets/cloud/fqdn.age;
-    };
-    cloudEMAIL = {
-      file = ./secrets/cloud/email.age;
-    };
-    cloudIMMICH = {
-      file = ./secrets/cloud/immich.age;
-    };
-    cloudINTERNAL = {
-      file = ./secrets/cloud/internal.age;
-    };
-    cloudNEXTCLOUD = {
-      file = ./secrets/cloud/nextcloud.age;
-    };
-    bachIPV4 = {
-      file = ./secrets/bach/ipv4.age;
-    };
-    bachIPV6 = {
-      file = ./secrets/bach/ipv6.age;
-    };
-    bachGATEWAY = {
-      file = ./secrets/bach/gateway.age;
-    };
-  };
 }
+

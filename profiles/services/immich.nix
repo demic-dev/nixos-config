@@ -1,6 +1,6 @@
 { config, pkgs, env, ... }:
 let
-  fqdn = ${env.cloudSettings.fqdn};
+  fqdn = env.cloudSettings.fqdn;
   domain = "${env.cloudSettings.services.immich.subdomain}.${env.cloudSettings.fqdn}";
   port = env.cloudSettings.services.immich.port;
   redisPort = port + 1;
@@ -91,7 +91,7 @@ in
 
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${port}";
+      proxyPass = "http://localhost:${builtins.toString port}";
       proxyWebsockets = true;
       extraConfig = ''
         client_max_body_size 50000M;

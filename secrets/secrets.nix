@@ -19,44 +19,4 @@ in
     bachSystem
     micheleAtBach
   ];
-
-  "cloud/fqdn.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "cloud/email.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "cloud/internal.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "cloud/nextcloud.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "cloud/immich.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "bach/ipv4.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "bach/ipv6.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
-
-  "bach/gateway.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
 }

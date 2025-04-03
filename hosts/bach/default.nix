@@ -1,10 +1,14 @@
 
-{ config, pkgs, ... }:
-
+{ config, pkgs, env, ... }:
+let
+  user = env.userSettings.bach.user;
+  homePath = env.userSettings.bach.home.path;
+in
 {
   nix = {
     settings.experimental-features = "nix-command flakes";
   };
+  nixpkgs.hostPlatform = "aarch64-linux";
 
   imports =
     [
@@ -27,7 +31,14 @@
     git
     tailscale
     btop
+    fd
+    ripgrep
   ];
+
+  users.users.${user} = {
+    name = user;
+    home = homePath;
+  };
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
