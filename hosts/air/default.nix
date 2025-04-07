@@ -42,9 +42,9 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  environment.systemPackages = [
-    pkgs.fd
-    pkgs.ripgrep
+  environment.systemPackages = with pkgs; [
+    fd
+    ripgrep
   ];
 
   # Brew
@@ -52,11 +52,11 @@
     enable = true;
     onActivation.cleanup = "uninstall";
 
-    taps = [];
     brews = [
       "neofetch"
       "ncspot"
     ];
+
     casks = [
       "signal"
       "telegram"

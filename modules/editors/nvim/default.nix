@@ -12,20 +12,19 @@ in
 {
   programs.neovim.enable = true;
 
-  home.file.".config/nvim" = {
+  # Handle multiple configuration with path aliases: https://github.com/neovim/neovim/commit/d34c64e342dfba9248d1055e702d02620a1b31a8
+  home.file.".config/nvim-org" = {
+    source = ./config;
+    force = true;
+  };
+
+  home.file.".config/nvim-coding" = {
     source = ecosse3;
     force = true;
   };
 
-  # home.file.".config/nvim/init.lua" = {
-  #   source = ./config/init.lua;
-  # };
-  #
-  # home.file.".config/nvim/ecosse3" = {
-  #   source = ecosse3;
-  # };
-  #
-  # home.file.".config/nvim/miragianCycle" = {
-  #   source = miragianCycle;
-  # };
+  home.file.".config/nvim-write" = {
+    source = miragianCycle;
+    force = true;
+  };
 }
