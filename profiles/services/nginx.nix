@@ -20,7 +20,7 @@ in
 
         locations."/" = {
           recommendedProxySettings = true;
-          return = "301 $scheme://demic-website.netlify.app$request_uri";
+          return = "301 https://demic-website.netlify.app$request_uri";
         };
       };
       "www.${fqdn}" = {
@@ -32,7 +32,7 @@ in
 
         locations."/" = {
           recommendedProxySettings = true;
-          return = "301 $scheme://demic-website.netlify.app$request_uri";
+          return = "301 https://demic-website.netlify.app$request_uri";
         };
       };
     };
