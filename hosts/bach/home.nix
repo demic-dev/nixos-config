@@ -14,7 +14,7 @@ in
 
   programs.zsh = {
     shellAliases = {
-      update = "nixos-rebuild switch --flake ${homePath}/.config/nix#bach";
+      update = "sudo nixos-rebuild switch --flake /home/.config-flakes/#bach";
     };
   };
 }

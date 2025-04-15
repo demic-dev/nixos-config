@@ -1,7 +1,6 @@
 { config, libs, pkgs, env, ... }:
 let
   fqdn = env.cloudSettings.fqdn;
-  port = env.cloudSettings.services.miniflux.port;
 in
 {
   services.nginx = {
@@ -16,7 +15,7 @@ in
       ${fqdn} = {
         serverName = fqdn;
 
-        enableACME = true;
+        useACMEHost = fqdn;
         forceSSL = true;
 
         locations."/" = {
@@ -25,7 +24,7 @@ in
         };
       };
       "www.${fqdn}" = {
-        serverName = fqdn;
+        serverName = "www.${fqdn}";
 
         enableACME = false;
         useACMEHost = fqdn;
