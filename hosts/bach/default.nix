@@ -33,6 +33,7 @@ in
     btop
     fd
     ripgrep
+    git-crypt
   ];
 
   users.users.${user} = {

@@ -45,6 +45,7 @@
   environment.systemPackages = with pkgs; [
     fd
     ripgrep
+    git-crypt
   ];
 
   # Brew
@@ -72,6 +73,8 @@
       "thunderbird"
       "ghostty"
       "netnewswire"
+      # "visual-studio-code"
+      # "nordvpn"
       # "zen-browser"
     ];
   };
