@@ -7,6 +7,12 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  imports =
+    [
+      # System
+      ../default.nix
+    ];
+
   # Source: https://macos-defaults.com/
   system = {
     defaults = {
@@ -43,9 +49,6 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   environment.systemPackages = with pkgs; [
-    fd
-    ripgrep
-    git-crypt
   ];
 
   # Brew

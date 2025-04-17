@@ -1,6 +1,0 @@
-return {
-{ "vimwiki/vimwiki" },
-}
-
-
-

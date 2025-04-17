@@ -14,6 +14,7 @@ in
     [
       # System
       ./hardware-configuration.nix
+      ../default.nix
       ../../disko/remoteZFSDecrypt.nix
       ../../disko/persistence.nix
       ../../profiles/networking.nix
@@ -27,13 +28,8 @@ in
   time.timeZone = "Europe/Madrid";
 
   environment.systemPackages = with pkgs; [
-    vim
-    git
     tailscale
     btop
-    fd
-    ripgrep
-    git-crypt
   ];
 
   users.users.${user} = {
