@@ -1,4 +1,4 @@
-{ lib, pkgs, userSettings, ... }:
+{ lib, pkgs, ... }:
 {
   home.file.".config/ghostty/config" = {
     source = ./config;

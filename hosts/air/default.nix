@@ -1,4 +1,4 @@
-{ self, lib, pkgs, userSettings, ... }:
+{ self, lib, pkgs, env, ... }:
 {
   nix = {
     enable = false;
@@ -6,6 +6,12 @@
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  imports =
+    [
+      # System
+      ../default.nix
+    ];
 
   # Source: https://macos-defaults.com/
   system = {
@@ -42,9 +48,7 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  environment.systemPackages = [
-    pkgs.fd
-    pkgs.ripgrep
+  environment.systemPackages = with pkgs; [
   ];
 
   # Brew
@@ -52,11 +56,11 @@
     enable = true;
     onActivation.cleanup = "uninstall";
 
-    taps = [];
     brews = [
       "neofetch"
       "ncspot"
     ];
+
     casks = [
       "signal"
       "telegram"
@@ -72,17 +76,17 @@
       "thunderbird"
       "ghostty"
       "netnewswire"
+      # "visual-studio-code"
+      # "nordvpn"
       # "zen-browser"
     ];
   };
 
-  users.users.${userSettings.air.user} = {
-    name = userSettings.air.user;
-    home = userSettings.air.home.path;
+  users.users.${env.userSettings.air.user} = {
+    name = env.userSettings.air.user;
+    home = env.userSettings.air.home.path;
   };
 
   # Required for backward compatibility
-  system = {
-    stateVersion = 4;
-  };
+  system.stateVersion = 4;
 }

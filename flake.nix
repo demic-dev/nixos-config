@@ -11,41 +11,50 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, impermanence, agenix }:
   let
-    systemSettings = { };
-    userSettings = {
-      writingEnvironment = "dev";
-
-      air = {
-        user = "micheledecillis";
-        host = "air";
-        home = {
-          path = "/Users/micheledecillis/";
-          config = ./hosts/air/home.nix;
-        };
-      };
-    };
+    env = import ./env.nix { inherit (nixpkgs) lib; };
   in
   {
-    darwinConfigurations.${userSettings.air.host} = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+    nixosConfigurations.bach = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
       specialArgs = {
-        inherit systemSettings;
-        inherit userSettings;
+        inherit inputs self env;
       };
       modules = [
-        home-manager.darwinModules.home-manager {
+        impermanence.nixosModules.impermanence
+        agenix.nixosModules.default
+        home-manager.nixosModules.home-manager {
           home-manager.extraSpecialArgs = {
-            inherit userSettings;
-            inherit systemSettings;
+            inherit env;
           };
 
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${userSettings.air.user} = userSettings.air.home.config; 
+          home-manager.users.michele = ./hosts/bach/home.nix; 
+        }
+        ./hosts/bach
+      ];
+    };
+
+    darwinConfigurations.air = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = {
+        inherit env;
+      };
+      modules = [
+        home-manager.darwinModules.home-manager {
+          home-manager.extraSpecialArgs = {
+            inherit env;
+          };
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.micheledecillis = ./hosts/air/home.nix; 
         }
         ./hosts/air
       ];
