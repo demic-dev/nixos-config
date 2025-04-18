@@ -1,9 +1,8 @@
 { lib, pkgs, ... }:
 let
   personalConfig = builtins.fetchGit {
-    url = "https://github.com/demic-dev/nvim";
-    # ref = "main";
-    rev = "d9d32cd2b8cd27681a3c347166525bc7a6d72ad6";
+    url = "ssh://git@github.com/demic-dev/nvim";
+    rev = "874c577f3680210fe8ced0adf380ddc7c903413d";
   };
 in
 {
