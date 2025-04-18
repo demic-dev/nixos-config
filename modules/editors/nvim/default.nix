@@ -2,7 +2,7 @@
 let
   personalConfig = builtins.fetchGit {
     url = "ssh://git@github.com/demic-dev/nvim";
-    rev = "874c577f3680210fe8ced0adf380ddc7c903413d";
+    rev = "5f2e9ce126b55744fcc576999ad80878ab304c4c";
   };
 in
 {
