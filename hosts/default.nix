@@ -8,5 +8,6 @@
     git-crypt
     zathura
     texliveFull
+    pandoc
   ];
 }
