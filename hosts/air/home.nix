@@ -2,6 +2,7 @@
 {
   imports = [
     ../defaultHome.nix
+    ../../modules/org
   ];
 
   home.sessionVariables = {
