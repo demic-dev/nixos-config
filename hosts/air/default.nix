@@ -76,8 +76,9 @@
       "thunderbird"
       "ghostty"
       "netnewswire"
+      "nextcloud"
       # "visual-studio-code"
-      # "nordvpn"
+      "nordvpn"
       # "zen-browser"
     ];
   };
