@@ -79,6 +79,7 @@
       "nextcloud"
       # "visual-studio-code"
       "nordvpn"
+      "figma"
       # "zen-browser"
     ];
   };
