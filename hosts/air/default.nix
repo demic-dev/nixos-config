@@ -59,6 +59,7 @@
     brews = [
       "neofetch"
       "ncspot"
+      "node"
     ];
 
     casks = [
