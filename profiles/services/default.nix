@@ -11,6 +11,7 @@
     ./fail2ban.nix
     ./postgresql.nix
     # NAS Services
+    ./hugo.nix
     # ./calibre.nix
     ./immich.nix
     ./nextcloud.nix
