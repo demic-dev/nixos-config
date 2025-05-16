@@ -14,7 +14,8 @@ in
 
   programs.zsh = {
     shellAliases = {
-      update = "sudo nixos-rebuild switch --flake /home/.config/#bach";
+      # Until when I don't solve how to load sensitive variables in a private way, I will use this ugly approach.
+      update = "cp env.nix temp_env.nix && cp sensitive_env.nix env.nix && sudo nixos-rebuild switch --flake /home/.config/#bach && mv temp_env.nix env.nix";
     };
   };
 }

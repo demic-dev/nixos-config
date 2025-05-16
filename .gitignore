@@ -1,2 +1,2 @@
 **/.DS_Store
-.sensitive
+sensitive_env.nix
