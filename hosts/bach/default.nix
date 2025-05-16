@@ -30,6 +30,7 @@ in
   environment.systemPackages = with pkgs; [
     tailscale
     btop
+    gcc
   ];
 
   users.users.${user} = {
