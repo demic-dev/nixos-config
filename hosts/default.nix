@@ -9,5 +9,7 @@
     zathura
     texliveFull
     pandoc
+    go
+    hugo
   ];
 }
