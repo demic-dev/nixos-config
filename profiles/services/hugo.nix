@@ -17,7 +17,7 @@ in
     script = ''
       set -ex
 
-      nix build github:demic-dev/website --out-link ${webRoot} --extra-experimental-features nix-command --extra-experimental-features flakes --refresh
+      nix build github:demic-dev/website --out-link ${webRoot} --extra-experimental-features nix-command --extra-experimental-features flakes --refresh --no-write-lock-file
     '';
   };
 
