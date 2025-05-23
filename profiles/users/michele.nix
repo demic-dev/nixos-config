@@ -11,5 +11,9 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZb619CoezLnPqNbHI+SenXRUWSLJxGycykva4ia8Sw decillismicheledeveloper@gmail.com"
     ];
+
+    shell = pkgs.zsh;
+    # zsh is installed, but maybe since it's loaded with home manager it can't be found during compilation
+    ignoreShellProgramCheck = true;
  };
 }
