@@ -19,6 +19,10 @@
         subdomain = "rss";
         port = 5401;
       };
+      calibre = {
+        subdomain = "calibre";
+        port = 10291;
+      };
     };
   };
 

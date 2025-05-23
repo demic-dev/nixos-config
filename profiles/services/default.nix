@@ -12,7 +12,7 @@
     ./postgresql.nix
     # NAS Services
     ./hugo.nix
-    # ./calibre.nix
+    ./calibre.nix
     ./immich.nix
     ./nextcloud.nix
     ./miniflux.nix
