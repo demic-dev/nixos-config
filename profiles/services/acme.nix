@@ -56,4 +56,6 @@ in
     mode = "0400";
   };
 
+  users.users.acme.uid = 998;
+  users.groups.acme.gid = 998;
 }

@@ -6,6 +6,7 @@
     extraGroups = [ "wheel" "networkmanager" ];
     packages = with pkgs; [ ];
 
+    uid = 1000;
     initialHashedPassword = "$6$DptngetaTDY6G.qa$tEWVAEGlpkvzUltZXYaZpQz4c40KOQG3eQXhwhcQn33oM02NyemgBFSa/G6Mzb9iKbTroI7uKd7AWgBfKuUGF.";
 
     openssh.authorizedKeys.keys = [

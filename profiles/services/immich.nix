@@ -104,4 +104,7 @@ in
 
   users.users.immich.uid = 15015;
   users.groups.immich.gid = 15015;
+
+  users.users.redis-immich.uid = 995;
+  users.groups.redis-immich.gid = 995;
 }

@@ -145,4 +145,7 @@ in
 
   users.users.nextcloud.uid = 999;
   users.groups.nextcloud.gid = 999;
+
+  users.users.redis-nextcloud.uid = 994;
+  users.groups.redis-nextcloud.gid = 994;
 }

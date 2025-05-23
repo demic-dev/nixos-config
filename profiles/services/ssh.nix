@@ -34,4 +34,6 @@
       }
     ];
   };
+
+  users.users.sshd.uid = 993;
 }

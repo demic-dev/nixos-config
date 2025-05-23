@@ -32,4 +32,6 @@ in
 
     firewall.enable = true;
   };
+
+  users.users.dhcpcd.uid = 997;
 }
