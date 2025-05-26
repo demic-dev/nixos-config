@@ -3,6 +3,7 @@ let
   fqdn = env.cloudSettings.fqdn;
   domain = "${env.cloudSettings.services.calibre.subdomain}.${fqdn}";
   port = env.cloudSettings.services.calibre.port;
+  calibreLibrary = "/data/nextcloud/data/micheledecillis/files/calibre";
 in
 {
   services.calibre-web = {
@@ -10,7 +11,8 @@ in
     listen.port = port;
 
     options = {
-      # calibreLibrary = "/data/books";
+      # Using NextCloud library!
+      calibreLibrary = calibreLibrary;
       enableBookUploading = true;
     };
   };
@@ -44,13 +46,14 @@ in
       user = "calibre-web";
       group = "calibre-web";
     }
-    {
-      directory = "/data/books";
-      # user = "calibre-web";
-      # group = "calibre-web";
-    }
+    # calibreLibrary already persisted under /data/nextcloud
   ];
 
   users.users.calibre-web.uid = 991;
   users.groups.calibre-web.gid = 989;
+
+  users.groups.nextcloud.members = [
+    "nextcloud"
+    "calibre-web"
+  ];
 }

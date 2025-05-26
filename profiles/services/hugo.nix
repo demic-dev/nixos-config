@@ -34,9 +34,9 @@ in
     "www.${fqdn}" = {
       serverName = "www.${fqdn}";
 
-      # enableACME = false;
-      # useACMEHost = fqdn;
-      # forceSSL = true;
+      enableACME = false;
+      useACMEHost = fqdn;
+      forceSSL = true;
 
       root = webRoot;
     };

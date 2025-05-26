@@ -1,5 +1,5 @@
 
-{ config, pkgs, env, ... }:
+{ config, pkgs, env, inputs, ... }:
 let
   user = env.userSettings.bach.user;
   homePath = env.userSettings.bach.home.path;
@@ -28,6 +28,7 @@ in
   time.timeZone = "Europe/Madrid";
 
   environment.systemPackages = with pkgs; [
+    inputs.agenix.packages."${system}".default
     tailscale
     btop
     gcc

@@ -18,6 +18,9 @@ in
     database.createLocally = true;
     maxUploadSize = maxUploadSize;
 
+    datadir = "/data/nextcloud";
+    home = "/data/nextcloud";
+
     extraAppsEnable = true;
     extraApps =  {
       inherit (config.services.nextcloud.package.packages.apps)
@@ -91,7 +94,7 @@ in
   # Persistence
   environment.persistence."/persist".directories = [
     {
-      directory = "/var/lib/nextcloud";
+      directory = "/data/nextcloud";
       user = "nextcloud";
       group = "nextcloud";
     }

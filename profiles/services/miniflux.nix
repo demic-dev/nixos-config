@@ -1,7 +1,7 @@
 { config, pkgs, env, ... }:
 let
-  internal = env.cloudSettings.internal;
-  domain = "${env.cloudSettings.services.miniflux.subdomain}.${env.cloudSettings.internal}";
+  fqdn = env.cloudSettings.internal;
+  domain = "${env.cloudSettings.services.miniflux.subdomain}.${fqdn}";
   port = env.cloudSettings.services.miniflux.port;
 in
 {
@@ -25,7 +25,7 @@ in
     serverName = domain;
 
     enableACME = false;
-    useACMEHost = internal;
+    useACMEHost = fqdn;
     forceSSL = true;
 
     locations."/" = {
