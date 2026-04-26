@@ -1,18 +1,18 @@
 { lib }:
 {
   cloudSettings = {
-    email = builtins.getEnv "EMAIL" or "email@example.com";
-    fqdn = builtins.getEnv "FQDN" or "example.com";
-    internal = builtins.getEnv "INTERNAL" or "internal.example.com";
+    email = builtins.getEnv "EMAIL";
+    fqdn = builtins.getEnv "FQDN";
+    internal = builtins.getEnv "INTERNAL";
     services = {
       nextcloud = {
-        subdomain = builtins.getEnv "NEXTCLOUD_SUB" or "nextcloud";
+        subdomain = builtins.getEnv "NEXTCLOUD_SUB";
         port = 8443; # redisPort = port + 1;
         maxUploadSize = "8G";
         client_max_body_size = "8000M";
       };
       immich = {
-        subdomain = builtins.getEnv "IMMICH_SUB" or "immich";
+        subdomain = builtins.getEnv "IMMICH_SUB";
         port = 2283; # redisPort = port + 1;
       };
       miniflux = {
@@ -52,10 +52,10 @@
       };
       network = {
         ip = {
-          v4 = builtins.getEnv "BACH_IPV4" or "1.1.1.1";
-          v6 = builtins.getEnv "BACH_IPV6" or "2001:db8::1";
+          v4 = builtins.getEnv "BACH_IPV4";
+          v6 = builtins.getEnv "BACH_IPV6";
         };
-        gateway = builtins.getEnv "BACH_GATEWAY" or "1.1.1.1";
+        gateway = builtins.getEnv "BACH_GATEWAY";
         subnetMask = "255.255.252.0";
         nameservers = [ "1.1.1.1" ];
       };
