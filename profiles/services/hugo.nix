@@ -2,6 +2,7 @@
 let
   fqdn = env.cloudSettings.fqdn;
   webRoot = "/var/www/${fqdn}";
+  githubUri = "demic-dev/website";
 in
 {
   systemd.services.${fqdn} = {
@@ -17,7 +18,7 @@ in
     script = ''
       set -ex
 
-      nix build github:demic-dev/website --out-link ${webRoot} --extra-experimental-features nix-command --extra-experimental-features flakes --refresh --no-write-lock-file
+      nix build github:${githubUri} --out-link ${webRoot} --extra-experimental-features nix-command --extra-experimental-features flakes --refresh --no-write-lock-file
     '';
   };
 
