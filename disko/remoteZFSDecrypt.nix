@@ -4,7 +4,7 @@ let
   gateway = env.userSettings.bach.network.gateway;
   subnetMask = env.userSettings.bach.network.subnetMask;
 
-  airSSH = env.userSettings.air.publicSSH;
+  nixAirSSH = env.userSettings.nixAir.publicSSH;
 in
 {
   boot = {
@@ -30,7 +30,7 @@ in
             /persist/etc/secrets/initrd/ssh_host_ed25519_key
           ];
           authorizedKeys = [
-            airSSH
+            nixAirSSH
           ];
         };
 

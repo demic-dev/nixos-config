@@ -27,6 +27,19 @@
   };
 
   userSettings = {
+    nixAir = {
+      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUnGzmayiQ8SazjVxi8KPAmgJQQssVbSCpAerMn0Eve michele@nixAir";
+      rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjIqDJcBd5/kw+kA8DNdM1KB2IZivH17GrIN+wEiTp5 root@nixAir";
+
+      user = "michele";
+      host = "nixAir";
+
+      home = {
+        path = "/home/michele/";
+        # config = ./hosts/nixAir/home.nix;
+      };
+    };
+
     bach = {
       publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
       rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
