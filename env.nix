@@ -1,18 +1,18 @@
 { lib }:
 {
   cloudSettings = {
-    email = builtins.getEnv "EMAIL";
-    fqdn = builtins.getEnv "FQDN";
-    internal = builtins.getEnv "INTERNAL";
+    email = builtins.getEnv "EMAIL" or "email@example.com";
+    fqdn = builtins.getEnv "FQDN" or "example.com";
+    internal = builtins.getEnv "INTERNAL" or "internal.example.com";
     services = {
       nextcloud = {
-        subdomain = builtins.getEnv "NEXTCLOUD_SUB";
+        subdomain = builtins.getEnv "NEXTCLOUD_SUB" or "nextcloud";
         port = 8443; # redisPort = port + 1;
         maxUploadSize = "8G";
         client_max_body_size = "8000M";
       };
       immich = {
-        subdomain = builtins.getEnv "IMMICH_SUB";
+        subdomain = builtins.getEnv "IMMICH_SUB" or "immich";
         port = 2283; # redisPort = port + 1;
       };
       miniflux = {
@@ -27,16 +27,6 @@
   };
 
   userSettings = {
-    air = {
-      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZb619CoezLnPqNbHI+SenXRUWSLJxGycykva4ia8Sw decillismicheledeveloper@gmail.com";
-      user = "micheledecillis";
-      host = "air";
-      home = {
-        path = "/Users/micheledecillis/";
-        config = ./hosts/air/home.nix;
-      };
-    };
-
     bach = {
       publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
       rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
@@ -49,14 +39,13 @@
       };
       network = {
         ip = {
-          v4 = builtins.getEnv "BACH_IPV4";
-          v6 = builtins.getEnv "BACH_IPV6";
+          v4 = builtins.getEnv "BACH_IPV4" or "1.1.1.1";
+          v6 = builtins.getEnv "BACH_IPV6" or "2001:db8::1";
         };
-        gateway = builtins.getEnv "BACH_GATEWAY";
+        gateway = builtins.getEnv "BACH_GATEWAY" or "1.1.1.1";
         subnetMask = "255.255.252.0";
         nameservers = [ "1.1.1.1" ];
       };
     };
   };
 }
-
