@@ -17,6 +17,8 @@ in
     };
 
     initrd = {
+      systemd.enable = false;
+
       kernelModules = [
         "virtio-pci"
       ];

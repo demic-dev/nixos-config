@@ -14,7 +14,7 @@ in
       email = email;
 
       dnsProvider = "cloudflare";
-      credentialsFile = config.age.secrets.cloudflare_dns_challenge.path;
+      environmentFile = config.age.secrets.cloudflare_dns_challenge.path;
 
       dnsPropagationCheck = true;
     };
