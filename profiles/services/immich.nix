@@ -4,15 +4,28 @@ let
   domain = "${env.cloudSettings.services.immich.subdomain}.${env.cloudSettings.fqdn}";
   port = env.cloudSettings.services.immich.port;
   redisPort = port + 1;
+
+  immichPath = "/data/immich";
+
+  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 in
 {
+  # not the best approach. it is temporary until I do not update nixos to the latest version
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
   services.immich = {
     enable = true;
+    package = pkgs.unstable.immich;
 
     port = port;
     host = "127.0.0.1";
 
-    mediaLocation = "/persist/data/immich";
+    mediaLocation = "/persist${immichPath}";
 
     database = {
       enable = true;
@@ -56,14 +69,13 @@ in
   };
 
   # Shouldn't be necessary anymore since it's under /persist/data
-  # # Persistence
-  # environment.persistence."/persist".directories = [
-  #   {
-  #     directory = "/var/lib/immich";
-  #     user = "immich";
-  #     group = "immich";
-  #   }
-  # ];
+  environment.persistence."/persist".directories = [
+    {
+      directory = immichPath;
+      user = "immich";
+      group = "immich";
+    }
+  ];
 
   # Fail2Ban Jail
    services.fail2ban.jails.immich.settings = {
