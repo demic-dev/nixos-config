@@ -15,6 +15,16 @@
     agenix.url = "github:ryantm/agenix";
   };
 
+  nixConfig = rec {
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
+    substituters = [
+      "https://cache.nixos.org"
+    ];
+    trusted-substituters = substituters;
+  };
+
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, impermanence, agenix }:
   let
     env = import ./env.nix { inherit (nixpkgs) lib; };
