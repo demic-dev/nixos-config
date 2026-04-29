@@ -24,6 +24,9 @@ in
       # Security
       ../../profiles/sudo.nix
     ];
+
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers.backend = "docker";
   
   time.timeZone = "Europe/Madrid";
 

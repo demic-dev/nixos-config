@@ -16,5 +16,6 @@
     ./immich.nix
     ./nextcloud.nix
     ./miniflux.nix
+    ./ghost.nix
   ];
 }
