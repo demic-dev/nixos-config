@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 {
   imports = [
     # Admin services
@@ -10,6 +9,7 @@
     ./nginx.nix
     ./fail2ban.nix
     ./postgresql.nix
+    ./backup.nix
     # NAS Services
     ./hugo.nix
     ./calibre.nix

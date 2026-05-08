@@ -1,7 +1,7 @@
 let
-  bachSystem = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
+  bachSystem = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83";
 
-  micheleAtBach = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
+  micheleAtBach = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP";
 
 in
 {
@@ -16,6 +16,16 @@ in
   ];
 
   "miniflux_admin_pass.age".publicKeys = [
+    bachSystem
+    micheleAtBach
+  ];
+
+  # Backups
+  "backup_passphrase.age".publicKeys = [
+    bachSystem
+    micheleAtBach
+  ];
+  "backup-borgbase-repository.age".publicKeys = [
     bachSystem
     micheleAtBach
   ];

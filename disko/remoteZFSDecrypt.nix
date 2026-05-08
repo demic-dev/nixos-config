@@ -7,6 +7,11 @@ let
   nixAirSSH = env.userSettings.nixAir.publicSSH;
 in
 {
+  services.zfs.autoScrub = {
+    enable = true;
+    interval = "*-*-1,15 02:30";
+  };
+
   boot = {
     kernelParams = [ "ip=${ipv4}::${gateway}:${subnetMask}::enp7s0:none" ];
     supportedFilesystems = [ "zfs" ];
