@@ -1,36 +1,65 @@
-{ config, pkgs, env, inputs, ... }:
+{ config, pkgs, env, inputs, lib, ... }:
 let
+  serviceName = "storiedisilicio";
+  serviceDb = "${serviceName}-db";
+  serviceNetwork = "${serviceName}-network";
+
   fqdn = env.cloudSettings.fqdn;
-  domain = "caccaculo.${env.cloudSettings.fqdn}";
+  domain = "${serviceName}.${env.cloudSettings.fqdn}";
 
   port = 41921;
-
-  user = env.userSettings.nixAir.user;
 in
 {
-  users.users.${user}.extraGroups = [ "docker" ];
-
   systemd.tmpfiles.rules = [
-    "d /var/lib/ghost-blog 0755 root root -"
+    "d /var/lib/${serviceName} 0755 root root -"
+    "d /var/lib/${serviceDb} 0755 root root -"
   ];
+  
+  systemd.services."init-${serviceNetwork}" = {
+    description = "Create ${serviceName} Docker network";
+    after = [ "network.target" "docker.service" ];
+    requires = [ "docker.service" ];
+    before = [ "docker-${serviceDb}.service" "docker-${serviceName}.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      # The '-' prefix ignores the exit code if the network already exists
+      ExecStart = "-${pkgs.docker}/bin/docker network create ${serviceNetwork}";
+    };
+  };
 
   # NixOS native way to run docker containers
   virtualisation.oci-containers = {
-    containers.ghost-blog = {
-      image = "ghost:latest";
-      ports = [ "${toString port}:2368" ];
-      
-      environment = {
-        # Using the domain instead of localhost
-        url = "https://${domain}"; 
-        # Must be development for SQLite, production requires MySQL
-        NODE_ENV = "development";
-        database__client = "sqlite3";
+    containers = {
+      ${serviceDb} = {
+        # Ghost recommends MySQL 8
+        image = "mysql:8.0";
+        environmentFiles = [ config.age.secrets.ghost-storiedisilicio-db-env.path ];
+        volumes = [
+          "/var/lib/${serviceDb}:/var/lib/mysql"
+        ];
+        extraOptions = [ "--network=${serviceNetwork}" ];
       };
 
-      volumes = [
-        "/var/lib/ghost-blog:/var/lib/ghost/content"
-      ];
+      ${serviceName} = {
+        image = "ghost:latest";
+        ports = [ "${toString port}:2368" ];
+        
+        environmentFiles = [ config.age.secrets.ghost-storiedisilicio-env.path ];
+        environment = {
+          # Using the domain instead of localhost
+          url = "https://${domain}"; 
+          database__client = "mysql";
+          # Resolves via the custom docker network
+          database__connection__host = serviceDb;
+        };
+
+        volumes = [
+          "/var/lib/${serviceName}:/var/lib/ghost/content"
+        ];
+        extraOptions = [ "--network=${serviceNetwork}" ];
+      };
     };
   };
 
@@ -49,4 +78,21 @@ in
       proxyWebsockets = true;
     };
   };
+
+  # Adding to Borgbase's backup
+  services.borgbackup.jobs."borgbase".paths = lib.mkMerge [
+    "/var/lib/${serviceName}"
+    "/var/lib/${serviceDb}"
+  ];
+
+  # Agenix
+  age.secrets = {
+    ghost-storiedisilicio-db-env = {
+      file = ../../secrets/ghost-storiedisilicio-db-env.age;
+    };
+    ghost-storiedisilicio-env = {
+      file = ../../secrets/ghost-storiedisilicio-env.age;
+    };
+  };
 }
+

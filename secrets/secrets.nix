@@ -29,4 +29,14 @@ in
     bachSystem
     micheleAtBach
   ];
+
+  # Ghost's Secrets
+  "ghost-storiedisilicio-env.age".publicKeys = [
+    micheleAtBach
+    bachSystem
+  ];
+  "ghost-storiedisilicio-db-env.age".publicKeys = [
+    micheleAtBach
+    bachSystem
+  ];
 }
