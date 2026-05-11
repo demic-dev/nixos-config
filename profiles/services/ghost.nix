@@ -85,6 +85,20 @@ in
     "/var/lib/${serviceDb}"
   ];
 
+  # Persistence
+  environment.persistence."/persist".directories = [
+    {
+      directory = "/var/lib/${serviceName}";
+      user = "root";
+      group = "root";
+    }
+    {
+      directory = "/var/lib/${serviceDb}";
+      user = "root";
+      group = "root";
+    }
+  ];
+
   # Agenix
   age.secrets = {
     ghost-storiedisilicio-db-env = {
