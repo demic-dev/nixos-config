@@ -29,14 +29,15 @@
     exclude = [
     ];
     # It's an antipattern, but it's okay since it is just and I don't want to expose it in the config
-    repo = "${builtins.readFile config.age.secrets.baclup-borgbase-repository.path}:repo";
+    repo = pkgs.lib.fileContents config.age.secrets.backup-borgbase-repository.path;
     preHook = ''
       ${pkgs.zfs}/bin/zfs destroy rpool/safe/persist@borgbase && true
       ${pkgs.zfs}/bin/zfs snapshot rpool/safe/persist@borgbase
-      /run/wrappers/bin/mount --bind /persist/.zfs/snapshot/borgbase /mnt/borgjobs/
+      /run/current-system/sw/bin/mkdir -p /var/tmp/borgjobs
+      /run/wrappers/bin/mount --bind /persist/.zfs/snapshot/borgbase /var/tmp/borgjobs/
     '';
     postHook = ''
-      /run/wrappers/bin/umount /mnt/borgjobs/
+      /run/wrappers/bin/umount /var/tmp/borgjobs/
       ${pkgs.zfs}/bin/zfs destroy rpool/safe/persist@borgbase
     '';
     encryption = {
