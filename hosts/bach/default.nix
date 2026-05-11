@@ -27,7 +27,6 @@ in
 
   virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
-  users.users.${user}.extraGroups = [ "docker" ];
   
   time.timeZone = "Europe/Madrid";
 

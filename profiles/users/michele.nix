@@ -3,7 +3,7 @@
 {
   users.users.michele = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     packages = with pkgs; [ ];
 
     uid = 1000;
