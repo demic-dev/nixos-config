@@ -15,7 +15,7 @@ in
   programs.zsh = {
     shellAliases = {
       # Until when I don't solve how to load sensitive variables in a private way, I will use this ugly approach.
-      update = "source ~/nixos/sensitive.sh && sudo -E nixos-rebuild switch --flake ~/nixos/#bach --impure";
+      update = "source /home/michele/nixos/sensitive.sh && sudo -E nixos-rebuild switch --flake /home/michele/nixos/#bach --impure";
     };
   };
 }
