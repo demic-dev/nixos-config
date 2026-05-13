@@ -16,33 +16,34 @@
   boot.zfs.devNodes = "/dev/disk/by-uuid";
 
   fileSystems."/" = {
-      device = "none";
-      fsType = "tmpfs";
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "mode=755" ];
   };
 
   fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/4879-77EA";
-      fsType = "vfat";
+    device = "/dev/disk/by-uuid/4879-77EA";
+    fsType = "vfat";
   };
 
   fileSystems."/nix" = {
-      device = "rpool/local/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
+    device = "rpool/local/nix";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/persist" = {
-      device = "rpool/safe/persist";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-      neededForBoot = true;
+    device = "rpool/safe/persist";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+    neededForBoot = true;
   };
 
   fileSystems."/persist/data" = {
-      device = "rpool/safe/persist/data";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-      neededForBoot = true;
+    device = "rpool/safe/persist/data";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+    neededForBoot = true;
   };
 
   swapDevices = [ ];

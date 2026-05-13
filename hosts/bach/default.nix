@@ -6,7 +6,10 @@ let
 in
 {
   nix = {
-    settings.experimental-features = "nix-command flakes";
+    settings = {
+      trusted-users = [ "root" "@wheel" ];
+      experimental-features = "nix-command flakes";
+    };
   };
   nixpkgs.hostPlatform = "aarch64-linux";
 

@@ -34,7 +34,7 @@ in
           enable = true;
           port = 2222;
           hostKeys = [
-            /persist/etc/secrets/initrd/ssh_host_ed25519_key
+            "/persist/etc/secrets/initrd/ssh_host_ed25519_key"
           ];
           authorizedKeys = [
             nixAirSSH
