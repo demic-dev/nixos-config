@@ -28,8 +28,7 @@
     ];
     exclude = [
     ];
-    # It's an antipattern, but it's okay since it is just and I don't want to expose it in the config
-    repo = pkgs.lib.fileContents config.age.secrets.backup-borgbase-repository.path;
+    repo = env.userSettings.bach.borg-repository;
     preHook = ''
       ${pkgs.zfs}/bin/zfs destroy rpool/safe/persist@borgbase && true
       ${pkgs.zfs}/bin/zfs snapshot rpool/safe/persist@borgbase
@@ -56,9 +55,6 @@
   age.secrets = {
     backup_passphrase = {
       file = ../../secrets/backup_passphrase.age;
-    };
-    backup-borgbase-repository = {
-      file = ../../secrets/backup-borgbase-repository.age;
     };
   };
 }

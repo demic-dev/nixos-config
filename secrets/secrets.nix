@@ -25,10 +25,6 @@ in
     bachSystem
     micheleAtBach
   ];
-  "backup-borgbase-repository.age".publicKeys = [
-    bachSystem
-    micheleAtBach
-  ];
 
   # Ghost's Secrets
   "ghost-storiedisilicio-env.age".publicKeys = [

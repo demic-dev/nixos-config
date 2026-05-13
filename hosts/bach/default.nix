@@ -35,6 +35,7 @@ in
     tailscale
     btop
     gcc
+    git-agecrypt
   ];
 
   users.users.${user} = {

@@ -6,21 +6,11 @@ let
   redisPort = port + 1;
 
   immichPath = "/data/immich";
-
-  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 in
 {
-  # not the best approach. it is temporary until I do not update nixos to the latest version
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
   services.immich = {
     enable = true;
-    package = pkgs.unstable.immich;
+    package = pkgs.immich;
 
     port = port;
     host = "127.0.0.1";
