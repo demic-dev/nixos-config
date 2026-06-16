@@ -15,7 +15,7 @@ in
   programs.zsh = {
     shellAliases = {
       # Until when I don't solve how to load sensitive variables in a private way, I will use this ugly approach.
-      update = "nixos-rebuild switch --flake ${env.userSettings.bach.configPath}";
+      update = "nixos-rebuild switch --flake ${env.userSettings.bach.configPath} --sudo";
     };
   };
 }
