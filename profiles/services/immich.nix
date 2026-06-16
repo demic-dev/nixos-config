@@ -101,7 +101,42 @@ in
         proxy_set_header X-Real-IP $remote_addr; 
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_max_temp_file_size 16384m; 
+
+        client_max_body_size 100m;
       '';
+    };
+  };
+
+  services.borgbackup.jobs."immich-backup-borgbase" = {
+    paths = [ immichPath ];
+
+    repo = env.cloudSettings.services.immich.borg-repository;
+    preHook = ''
+      ${pkgs.zfs}/bin/zfs destroy rpool/safe/persist@borgbase && true
+      ${pkgs.zfs}/bin/zfs snapshot rpool/safe/persist@borgbase
+      /run/current-system/sw/bin/mkdir -p /var/tmp/borgjobs
+      /run/wrappers/bin/mount --bind /persist/.zfs/snapshot/borgbase /var/tmp/borgjobs/
+    '';
+    postHook = ''
+      /run/wrappers/bin/umount /var/tmp/borgjobs/
+      ${pkgs.zfs}/bin/zfs destroy rpool/safe/persist@borgbase
+    '';
+    encryption = {
+      mode = "repokey-blake2";
+      passCommand = "cat /run/agenix/immich-backup_passphrase";
+    };
+    environment.BORG_RSH = "ssh -i /home/michele/.ssh/id_ed25519";
+    compression = "auto,lzma";
+    startAt = "daily";
+
+    user = "root";
+    group = "root";
+  };
+
+  # Agenix
+  age.secrets = {
+    immich-backup_passphrase = {
+      file = ../../secrets/immich-backup_passphrase.age;
     };
   };
 

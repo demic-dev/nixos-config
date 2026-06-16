@@ -26,6 +26,11 @@ in
     micheleAtBach
   ];
 
+  "immich-backup_passphrase.age".publicKeys = [
+    bachSystem
+    micheleAtBach
+  ];
+
   # Ghost's Secrets
   "ghost-storiedisilicio-env.age".publicKeys = [
     micheleAtBach

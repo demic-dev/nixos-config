@@ -12,6 +12,7 @@
         client_max_body_size = "8000M";
       };
       immich = {
+        borg-repository = lib.fileContents ./secrets/sensitive/immich-borg-repository.age;
         subdomain = lib.fileContents ./secrets/sensitive/immich-subdomain.age;
         port = 2283; # redisPort = port + 1;
       };
