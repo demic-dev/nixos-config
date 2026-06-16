@@ -51,6 +51,11 @@
     group = "root";
   };
 
+  # Adds personal repo to Known Hosts. Otherwise impermanence erases it
+  programs.ssh.knownHosts."*.repo.borgbase.com" = {
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS3185JdDy7ffnr0nLWqVy8FaAQeVh1QYUSiNpW5ESq";
+  };
+
   # Agenix
   age.secrets = {
     backup_passphrase = {
