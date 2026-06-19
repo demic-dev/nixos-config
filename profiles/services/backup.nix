@@ -27,6 +27,8 @@
       "/var/lib/tailscale"
     ];
     exclude = [
+      # Until the single-backup-per-service is not ready, I exclude immich declaratively
+      "/data/immich"
     ];
     repo = env.userSettings.bach.borg-repository;
     preHook = ''
