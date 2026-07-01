@@ -4,7 +4,7 @@ let
   gateway = env.userSettings.bach.network.gateway;
   subnetMask = env.userSettings.bach.network.subnetMask;
 
-  nixAirSSH = env.userSettings.nixAir.publicSSH;
+  satieSSH = env.userSettings.satie.publicSSH;
 in
 {
   services.zfs.autoScrub = {
@@ -37,7 +37,7 @@ in
             "/persist/etc/secrets/initrd/ssh_host_ed25519_key"
           ];
           authorizedKeys = [
-            nixAirSSH
+            satieSSH
           ];
         };
 
