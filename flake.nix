@@ -1,73 +1,69 @@
 {
-  description = "My MacBook Air configuration";
+  description = "NixOS configuration for my machines";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin = {
-        url = "github:LnL7/nix-darwin";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
     home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
     agenix.url = "github:ryantm/agenix";
+    impermanence.url = "github:nix-community/impermanence";
+
+    # satie (Apple-Silicon laptop) inputs
+    nixos-apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    danksearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    gruvbox-wallpapers = {
+      url = "github:AngelJumbo/gruvbox-wallpapers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = rec {
     trusted-public-keys = [
+      "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     substituters = [
+      "https://nixos-apple-silicon.cachix.org"
       "https://cache.nixos.org"
     ];
     trusted-substituters = substituters;
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, impermanence, agenix }:
-  let
-    env = import ./env.nix { inherit (nixpkgs) lib; };
-  in
-  {
-    nixosConfigurations.bach = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {
-        inherit inputs self env;
-      };
-      modules = [
-        impermanence.nixosModules.impermanence
-        agenix.nixosModules.default
-        home-manager.nixosModules.home-manager {
-          home-manager.extraSpecialArgs = {
-            inherit env;
-          };
-
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.michele = ./hosts/bach/home.nix; 
-        }
-        ./hosts/bach
-      ];
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "aarch64-linux" ];
+      imports =
+        # home-manager's flakeModule exposes flake.homeModules.<name> for aspects to register into.
+        [ inputs.home-manager.flakeModules.default ]
+        # Every .nix under ./modules is auto-imported as a flake-parts module.
+        ++ (inputs.import-tree ./modules).imports;
     };
-
-    darwinConfigurations.air = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = {
-        inherit env;
-      };
-      modules = [
-        home-manager.darwinModules.home-manager {
-          home-manager.extraSpecialArgs = {
-            inherit env;
-          };
-
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.micheledecillis = ./hosts/air/home.nix; 
-        }
-        ./hosts/air
-      ];
-    };
-  };
 }

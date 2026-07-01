@@ -28,37 +28,44 @@
   };
 
   userSettings = {
-    nixAir = {
-      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUnGzmayiQ8SazjVxi8KPAmgJQQssVbSCpAerMn0Eve michele@nixAir";
-      rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjIqDJcBd5/kw+kA8DNdM1KB2IZivH17GrIN+wEiTp5 root@nixAir";
+    satie = {
+      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUnGzmayiQ8SazjVxi8KPAmgJQQssVbSCpAerMn0Eve michele@satie";
+      rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjIqDJcBd5/kw+kA8DNdM1KB2IZivH17GrIN+wEiTp5 root@satie";
+
+      id = "3e042fee";
+
+      configPath = "/home/michele/nixos/";
 
       user = "michele";
-      host = "nixAir";
+      host = "satie";
 
       home = {
         path = "/home/michele/";
-        # config = ./hosts/nixAir/home.nix;
+        # config = ./hosts/satie/home.nix;
+      };
+
+      network = {
+        nameservers = [ "1.1.1.1" ];
       };
     };
 
     bach = {
-      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP decillismicheledeveloper@gmail.com";
+      publicSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjDuFgmRgyjZ/Ye/QiFetZ6r+W9SGB4ufJcxzCF0ALP michele@bach";
       rootSSH = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7rFUiGulUCjRKMua3OXkAyfnvkZLHwBud4kb37gT83 root@bach";
 
       borg-repository = lib.fileContents ./secrets/sensitive/backup-borgbase-repository.age;
       
       id = "05835d97";
 
-      configPath = "/home/michele/nixos/#bach";
+      configPath = "/home/michele/nixos/";
       
       user = "michele";
       host = "bach";
       
       home = {
         path = "/home/michele/";
-        config = ./hosts/bach/home.nix;
       };
-      
+
       network = {
         ip = {
           v4 = lib.fileContents ./secrets/sensitive/bach-ipv4.age;
