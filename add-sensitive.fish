@@ -22,8 +22,11 @@ end
 
 set -l rel "secrets/sensitive/$name.age"
 if test -e "$rel"
-    echo "Error: $rel already exists." >&2
-    exit 1
+    echo "Warning: $rel already exists." >&2
+else
+    # Write the effective (cleartext) value.
+    echo "Enter the value to store in $rel, then press Ctrl-D:"
+    cat >$rel
 end
 
 # Collect one or more recipient public keys (age recipients or ssh public keys).
@@ -49,12 +52,9 @@ for key in $recipients
 end
 git-agecrypt config add $rflags -p "$rel"; or exit 1
 
-# Write the effective (cleartext) value.
-echo "Enter the value to store in $rel, then press Ctrl-D:"
-cat >$rel
-
 # Stage it: git-agecrypt's clean filter encrypts the committed blob to the recipients above.
 git add "$rel"
 
 echo
 echo "Done: $rel registered for "(count $recipients)" recipient(s) and staged (encrypted on commit)."
+
