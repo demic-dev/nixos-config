@@ -48,7 +48,9 @@
       neededForBoot = true;
     };
 
-    swapDevices = [ ];
+    swapDevices = [
+      { device = "/dev/zvol/rpool/tempswap"; }
+    ];
 
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   };
