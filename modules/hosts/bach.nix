@@ -105,12 +105,16 @@ in
 
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
         home-manager.extraSpecialArgs = { inherit env inputs; };
         home-manager.users.michele = {
           imports = with config.flake.homeModules; [ git fish ghostty ];
 
           home.username = "michele";
-          home.homeDirectory = env.userSettings.bach.home.path;
+          # Must not have a trailing slash: home-manager's nixos module already derives this from
+          # users.users.michele.home ("/home/michele"), and a mismatching value is a hard conflict.
+          # (env...home.path keeps its trailing slash for the XDG_CONFIG_HOME concatenation below.)
+          home.homeDirectory = "/home/michele";
 
           programs.neovim.enable = true;
 
