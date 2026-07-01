@@ -194,6 +194,8 @@ in
             fish.enable = true;
           };
 
+         home.file.".ssh/id_ed25519.pub".text = env.userSettings.satie.publicSSH;
+
           home.stateVersion = "26.05";
           programs.home-manager.enable = true;
         };
